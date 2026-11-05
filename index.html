@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Derecho a Continuar – Guía de orientación</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --morado: #371157;
+    --lavanda: #DFCFED;
+    --lavanda-claro: #F3EAF9;
+    --amarillo: #FFF266;
+    --gris: #262626;
+    --blanco: #ffffff;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+    background: var(--lavanda);
+    color: var(--gris);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--amarillo); outline-offset: 3px; }
+
+  /* HERO */
+  .hero {
+    background: var(--morado);
+    color: var(--lavanda);
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 6vw, 5rem) clamp(3rem, 7vw, 5rem);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    right: -8vw; bottom: -14vw;
+    width: 38vw; height: 38vw; max-width: 460px; max-height: 460px;
+    border-radius: 50%;
+    background: var(--amarillo);
+    opacity: .95;
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero .lema {
+    display: inline-block;
+    background: var(--amarillo);
+    color: var(--morado);
+    font-weight: 700;
+    letter-spacing: .12em;
+    padding: .35rem 1rem;
+    border-radius: 999px;
+    font-size: clamp(.8rem, 2vw, 1rem);
+    margin: 0 0 2rem;
+  }
+  .hero h1 {
+    margin: 0;
+    font-weight: 500;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    line-height: 1.05;
+    color: var(--lavanda);
+  }
+  .hero h1 .continuar {
+    display: block;
+    font-weight: 800;
+    font-size: clamp(3.2rem, 14vw, 9rem);
+    line-height: .95;
+    letter-spacing: -.02em;
+    color: var(--amarillo);
+    margin-top: .1em;
+  }
+  .hero .bajada {
+    max-width: 30ch;
+    margin: 2rem 0 0;
+    font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+    font-weight: 500;
+    color: var(--blanco);
+  }
+  .hero .subtitulo {
+    max-width: 52ch;
+    margin: 1.5rem 0 0;
+    color: var(--lavanda);
+    font-size: 1rem;
+  }
+
+  /* BARRA DE LEY */
+  .ley {
+    background: var(--amarillo);
+    color: var(--morado);
+    padding: 1.4rem clamp(1.25rem, 6vw, 5rem);
+  }
+  .ley p {
+    max-width: 1100px;
+    margin: 0 auto;
+    font-weight: 600;
+    font-size: clamp(1rem, 2.4vw, 1.25rem);
+  }
+  .ley span { font-weight: 800; }
+
+  /* INDICE */
+  nav.indice {
+    background: var(--gris);
+    padding: 1rem clamp(1.25rem, 6vw, 5rem);
+  }
+  nav.indice ul {
+    max-width: 1100px; margin: 0 auto; padding: 0; list-style: none;
+    display: flex; flex-wrap: wrap; gap: .6rem;
+  }
+  nav.indice a {
+    display: inline-block;
+    color: var(--lavanda);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: .9rem;
+    padding: .4rem .9rem;
+    border: 1.5px solid var(--lavanda);
+    border-radius: 999px;
+    transition: background .2s, color .2s;
+  }
+  nav.indice a:hover { background: var(--amarillo); border-color: var(--amarillo); color: var(--morado); }
+
+  /* SECCIONES */
+  main { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1.25rem, 6vw, 2rem); }
+  section.grupo { padding: clamp(2.5rem, 6vw, 4.5rem) 0 0; scroll-margin-top: 1rem; }
+  .grupo-cabecera {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1.6rem;
+  }
+  .letra {
+    flex: 0 0 auto;
+    width: 3.2rem; height: 3.2rem;
+    border-radius: 50%;
+    background: var(--morado);
+    color: var(--amarillo);
+    display: grid; place-items: center;
+    font-weight: 800; font-size: 1.5rem;
+  }
+  .grupo-cabecera h2 {
+    margin: 0;
+    font-size: clamp(1.4rem, 3.6vw, 2.1rem);
+    font-weight: 700;
+    color: var(--morado);
+    line-height: 1.2;
+  }
+  .grupo-cabecera h2 small {
+    display: block;
+    font-size: .85rem;
+    font-weight: 500;
+    color: var(--gris);
+    margin-top: .2rem;
+  }
+
+  .derechos {
+    list-style: none; margin: 0; padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+    gap: 1rem;
+  }
+  .derecho {
+    background: var(--lavanda-claro);
+    border: 2px solid var(--morado);
+    border-radius: 1.2rem;
+    padding: 1.3rem 1.3rem 1.4rem;
+    display: flex; flex-direction: column; gap: .7rem;
+  }
+  .derecho .num {
+    align-self: flex-start;
+    background: var(--morado);
+    color: var(--amarillo);
+    font-weight: 800;
+    font-size: 1.2rem;
+    min-width: 2.6rem; height: 2.6rem;
+    padding: 0 .6rem;
+    display: grid; place-items: center;
+    border-radius: 999px;
+  }
+  .derecho h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--morado);
+  }
+  .derecho p { margin: 0; font-size: .95rem; color: var(--gris); }
+
+  /* AYUDA */
+  .ayuda {
+    background: var(--morado);
+    color: var(--lavanda);
+    margin-top: clamp(3rem, 7vw, 5rem);
+    padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 6vw, 5rem);
+  }
+  .ayuda-inner { max-width: 1100px; margin: 0 auto; }
+  .ayuda h2 {
+    margin: 0 0 .4rem;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 800;
+    color: var(--amarillo);
+    line-height: 1.1;
+  }
+  .ayuda > .ayuda-inner > p { margin: 0 0 2rem; max-width: 50ch; }
+  .contactos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+    gap: 1.2rem;
+  }
+  .contacto {
+    background: var(--gris);
+    border-radius: 1.2rem;
+    padding: 1.5rem;
+  }
+  .contacto h3 { margin: 0 0 1rem; color: var(--amarillo); font-size: 1.25rem; font-weight: 700; }
+  .contacto ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
+  .contacto li {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+    border-bottom: 1px solid rgba(223,207,237,.3);
+    padding-bottom: .6rem;
+    color: var(--lavanda);
+  }
+  .contacto li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .contacto li strong { color: var(--blanco); font-weight: 700; white-space: nowrap; }
+
+  footer {
+    background: var(--gris);
+    color: var(--lavanda);
+    text-align: center;
+    padding: 2rem 1.25rem;
+    font-size: .9rem;
+  }
+  footer strong { color: var(--amarillo); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="lema">DALE LA VUELTA</p>
+    <h1>El Derecho a <span class="continuar">CONTINUAR</span></h1>
+    <p class="bajada">Hay derechos, apoyo y una vida que merece seguir.</p>
+    <p class="subtitulo">Una guía de orientación: información y orientación para mujeres sobrevivientes de violencia femicida.</p>
+  </div>
+</header>
+
+<div class="ley">
+  <p><span>La Ley 21.565</span> establece medidas de protección y reparación para las víctimas de femicidio y sus familias. Tus derechos son importantes.</p>
+</div>
+
+<nav class="indice" aria-label="Secciones de la guía">
+  <ul>
+    <li><a href="#reparacion">Reparación del Estado</a></li>
+    <li><a href="#laborales">Derechos laborales</a></li>
+    <li><a href="#penal">Proceso penal</a></li>
+    <li><a href="#apoyo">Apoyo psicosocial</a></li>
+    <li><a href="#ayuda">Dónde pedir ayuda</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- A -->
+  <section class="grupo" id="reparacion" aria-labelledby="t-a">
+    <div class="grupo-cabecera">
+      <div class="letra" aria-hidden="true">A</div>
+      <h2 id="t-a">Reparación del Estado<small>Ley 21.565, 2023</small></h2>
+    </div>
+    <ol class="derechos">
+      <li class="derecho">
+        <span class="num">1</span>
+        <h3>Atención y reparación integral</h3>
+        <p>La ley busca crear y fortalecer las acciones del Estado para la atención y reparación integral de las víctimas.</p>
+      </li>
+      <li class="derecho">
+        <span class="num">2</span>
+        <h3>Ser reconocida oficialmente como víctima</h3>
+        <p>El SernamEG calificó la condición de víctima. Esa calificación abre el acceso a los beneficios.</p>
+      </li>
+      <li class="derecho">
+        <span class="num">3</span>
+        <h3>Acceso preferente a la protección social</h3>
+        <p>Las víctimas directas e indirectas tienen acceso preferente a las prestaciones sociales de las que sean usuarias.</p>
+      </li>
+      <li class="derecho">
+        <span class="num">4</span>
+        <h3>Pensión de reparación para hijos e hijas (víctimas indirectas)</h3>
+        <p>Es una pensión mensual de $160.000 para menores de 18 años, que se paga hasta que cumplan esa edad.</p>
+      </li>
+      <li class="derecho">
+        <span class="num">5</span>
+        <h3>Compatibilidad de la pensión</h3>
+        <p>Es compatible con cualquier otra pensión o beneficio de seguridad social.</p>
+      </li>
+      <li class="derecho">
+        <span class="num">6</span>
+        <h3>Trámite gratuito y abierto todo el año</h3>
+        <p>La solicitud se ingresa en el sitio web del SernamEG, sin costo.</p>
+      </li>
+      <li class="derecho">
+        <span class="num">7</span>
+        <h3>Reconocimiento de la responsabilidad del Estado</h3>
+        <p>La ley busca resarcir el daño de las víctimas y sus familias, reconociendo la responsabilidad del Estado frente a la violencia que viven las mujeres.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- B -->
+  <section class="grupo" id="laborales" aria-labelledby="t-b">
+    <div class="grupo-cabecera">
+      <div class="letra" aria-hidden="true">B</div>
+      <h2 id="t-b">Derechos laborales<small>Sobrevivientes de femicidio frustrado</small></h2>
+    </div>
+    <ol class="derechos" start="8">
+      <li class="derecho">
+        <span class="num">8</span>
+        <h3>Fuero laboral</h3>
+        <p>Desde el hecho y hasta un año después.</p>
+      </li>
+      <li class="derecho">
+        <span class="num">9</span>
+        <h3>Adecuación temporal de funciones mientras dure el fuero</h3>
+        <p>Sirve para permitir la reparación y protección de la víctima.</p>
+      </li>
+      <li class="derecho">
+        <span class="num">10</span>
+        <h3>Permiso para asistir a diligencias</h3>
+        <p>La comparecencia en investigaciones o procedimientos judiciales, cuando es requerida, queda justificada. La ley da además un permiso especial a otras víctimas para justificar su ausencia laboral.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- C -->
+  <section class="grupo" id="penal" aria-labelledby="t-c">
+    <div class="grupo-cabecera">
+      <div class="letra" aria-hidden="true">C</div>
+      <h2 id="t-c">Derechos en el proceso penal<small>Art. 109 y 109 bis CPP y Ley Antonia</small></h2>
+    </div>
+    <ol class="derechos" start="11">
+      <li class="derecho">
+        <span class="num">11</span>
+        <h3>Asistencia y representación judicial</h3>
+        <p>Se agrega a los derechos generales de toda víctima en delitos de violencia contra las mujeres.</p>
+      </li>
+      <li class="derecho">
+        <span class="num">12</span>
+        <h3>Información clara, oportuna y completa de la causa</h3>
+        <p>También sobre la libertad condicional y los permisos de salida del condenado.</p>
+      </li>
+      <li class="derecho">
+        <span class="num">13</span>
+        <h3>Protección de datos personales, intimidad y honra, propios y de hijos e hijas</h3>
+        <p>Rige desde la denuncia.</p>
+      </li>
+      <li class="derecho">
+        <span class="num">14</span>
+        <h3>Atención por personal capacitado de Carabineros, PDI y Ministerio Público</h3>
+        <p>Para evitar la revictimización.</p>
+      </li>
+      <li class="derecho">
+        <span class="num">15</span>
+        <h3>Medidas de protección y cautelares</h3>
+        <p>Por ejemplo, prohibición de acercamiento.</p>
+      </li>
+      <li class="derecho">
+        <span class="num">16</span>
+        <h3>Perseguir responsabilidad civil</h3>
+        <p>Es decir, demandar una indemnización por el daño.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- D -->
+  <section class="grupo" id="apoyo" aria-labelledby="t-d">
+    <div class="grupo-cabecera">
+      <div class="letra" aria-hidden="true">D</div>
+      <h2 id="t-d">Apoyo psicosocial y protección de la familia</h2>
+    </div>
+    <ol class="derechos" start="17">
+      <li class="derecho">
+        <span class="num">17</span>
+        <h3>Atención psicosocial especializada</h3>
+        <p>El Programa de Apoyo a Víctimas atiende a víctimas directas de femicidios frustrados y a víctimas indirectas de femicidios consumados.</p>
+      </li>
+      <li class="derecho">
+        <span class="num">18</span>
+        <h3>Protección de hijos e hijas frente al agresor</h3>
+        <p>La ley establece la suspensión y privación de derechos y responsabilidades parentales para quienes cometan este delito.</p>
+      </li>
+    </ol>
+  </section>
+
+</main>
+
+<!-- AYUDA -->
+<section class="ayuda" id="ayuda" aria-labelledby="t-ayuda">
+  <div class="ayuda-inner">
+    <h2 id="t-ayuda">Dónde pedir ayuda</h2>
+    <p>Puedes denunciar y recibir orientación y acompañamiento en estos canales.</p>
+    <div class="contactos">
+      <div class="contacto">
+        <h3>Denunciar</h3>
+        <ul>
+          <li>Carabineros <strong>133</strong></li>
+          <li>Fono Familia <strong>149</strong></li>
+          <li>La Fiscalía <strong>600 333 00 00</strong></li>
+        </ul>
+      </div>
+      <div class="contacto">
+        <h3>Orientación y acompañamiento</h3>
+        <ul>
+          <li>Fono 1455 (SernamEG) <strong>1455</strong></li>
+          <li>Centros de la Mujer (SernamEG)</li>
+          <li>PDI <strong>134</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><strong>Dale la vuelta.</strong> El Derecho a Continuar: hay derechos, apoyo y una vida que merece seguir.</p>
+</footer>
+
+</body>
+</html>
