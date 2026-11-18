@@ -9,248 +9,208 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --morado: #371157;
-    --lavanda: #DFCFED;
-    --amarillo: #FFF266;
-    --gris: #262626;
+    --vino: #690437;
+    --coral: #CB4854;
+    --lavanda: #D6C4E0;
     --blanco: #FFFFFF;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--blanco);
-    color: var(--gris);
-    font-family: 'Manrope', sans-serif;
-    font-size: 1.0625rem;
-    line-height: 1.6;
-  }
-  .wrap { max-width: 980px; margin: 0 auto; padding: 0 1.5rem; }
+  body { background: var(--blanco); font-family: 'Manrope', sans-serif; font-size: 1.05rem; line-height: 1.55; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
 
-  /* Portada */
-  header { padding: 4rem 0 3rem; }
-  .sobretitulo {
-    display: inline-block;
-    background: var(--amarillo);
-    color: var(--morado);
-    font-weight: 800;
-    letter-spacing: .08em;
-    padding: .35rem 1rem;
-    border-radius: 999px;
-    font-size: .95rem;
-  }
-  h1 {
-    font-family: 'DM Serif Display', serif;
-    font-weight: 400;
-    color: var(--morado);
-    font-size: clamp(3.2rem, 11vw, 7.5rem);
-    line-height: .95;
-    margin: 1.25rem 0 1.5rem;
-  }
-  h1 span { display: block; }
-  .continuar { background: var(--amarillo); padding: 0 .2em; display: inline-block; }
-  .lema { font-size: 1.35rem; font-weight: 700; color: var(--morado); max-width: 30ch; }
-  .intro {
-    margin-top: 2rem;
-    background: var(--morado);
-    color: var(--blanco);
-    border-radius: 1.25rem;
-    padding: 1.75rem 2rem;
-    display: grid;
-    gap: .5rem;
-  }
-  .intro strong { color: var(--amarillo); font-weight: 800; }
+  /* Fondo animado */
+  .lineas { position: relative; overflow: hidden; }
+  .lineas canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .lineas > .wrap { position: relative; }
 
-  /* Secciones */
-  section { margin-top: 3.5rem; }
-  .seccion-titulo {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    background: var(--lavanda);
-    color: var(--morado);
-    border-radius: 1rem;
-    padding: 1rem 1.5rem;
-  }
-  .letra {
-    font-family: 'DM Serif Display', serif;
-    background: var(--morado);
-    color: var(--amarillo);
-    width: 2.75rem; height: 2.75rem;
-    flex: none;
-    display: grid; place-items: center;
-    border-radius: 50%;
-    font-size: 1.6rem;
-  }
-  h2 {
-    font-family: 'DM Serif Display', serif;
-    font-weight: 400;
-    font-size: clamp(1.5rem, 4vw, 2.1rem);
-    line-height: 1.15;
-  }
-  .ref { font-size: .9rem; font-weight: 500; opacity: .85; }
+  /* Afiche */
+  .afiche { background: var(--vino); min-height: 100vh; display: grid; align-items: end; padding: 3rem 0; }
+  .afiche .wrap { width: 100%; }
+  .titulo { background: var(--vino); display: inline-block; padding: 1.5rem 1.75rem 1.75rem; border-radius: 1rem; color: var(--lavanda); }
+  .titulo .pre { font-weight: 800; letter-spacing: .08em; color: var(--blanco); }
+  .titulo h1 { font-family: 'DM Serif Display', serif; font-weight: 400; color: var(--blanco); font-size: clamp(3rem, 10vw, 7rem); line-height: .95; margin: .5rem 0 1rem; }
+  .titulo h1 span { display: block; }
+  .titulo p { font-weight: 700; font-size: 1.2rem; max-width: 30ch; }
 
-  ol { list-style: none; }
-  .derecho {
-    display: grid;
-    grid-template-columns: 4.5rem 1fr;
-    gap: 1rem;
-    padding: 1.5rem .5rem;
-    border-bottom: 2px solid var(--lavanda);
-  }
-  .derecho:last-child { border-bottom: 0; }
-  .num {
-    font-family: 'DM Serif Display', serif;
-    font-size: 3.4rem;
-    line-height: 1;
-    color: var(--morado);
-    text-align: right;
-  }
-  h3 {
-    font-weight: 800;
-    font-size: 1.15rem;
-    line-height: 1.3;
-    color: var(--morado);
-    margin-bottom: .35rem;
-  }
-  .derecho p { max-width: 62ch; }
-  mark { background: var(--amarillo); color: var(--gris); padding: 0 .25em; font-weight: 700; }
+  /* Bandas del fanzine */
+  .banda { padding: 4rem 0; }
+  .banda.lav { background: var(--lavanda); color: var(--vino); --desc: #7a4a68; }
+  .banda.cor { background: var(--coral); color: var(--blanco); --desc: var(--lavanda); }
+  .banda.vin { background: var(--vino); color: var(--blanco); --desc: var(--lavanda); }
+  .banda.intro { background: var(--blanco); color: var(--vino); padding: 3.5rem 0 1rem; }
+  .intro p { font-size: 1.35rem; font-weight: 700; max-width: 40ch; }
+  .intro p + p { font-size: 1.05rem; font-weight: 500; margin-top: 1rem; color: #3b1a2b; }
+
+  h2 { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(2rem, 6vw, 3.4rem); line-height: 1.05; }
+  .ref { font-size: .95rem; font-weight: 500; opacity: .85; margin-top: .35rem; }
+  ol { list-style: none; margin-top: 2.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.25rem 3rem; }
+  li { display: grid; grid-template-columns: 4rem 1fr; gap: 1rem; align-items: start; }
+  .num { position: relative; font-family: 'DM Serif Display', serif; font-size: 2.6rem; line-height: 1; text-align: center; width: 4rem; height: 4rem; display: grid; place-items: center; }
+  h3 { font-weight: 800; font-size: 1.1rem; line-height: 1.3; margin-bottom: .3rem; }
+  li p { color: var(--desc); }
+  mark { background: var(--lavanda); color: var(--vino); padding: 0 .25em; font-weight: 800; border-radius: 2px; }
 
   /* Contactos */
-  .contactos {
-    margin: 4rem 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.25rem;
-  }
-  .caja { border-radius: 1.25rem; padding: 1.75rem; }
-  .caja.amarilla { background: var(--amarillo); color: var(--morado); }
-  .caja.lavanda { background: var(--lavanda); color: var(--morado); }
-  .caja h2 { margin-bottom: .75rem; }
-  .caja ul { list-style: none; }
-  .caja li { margin-bottom: .35rem; color: var(--gris); }
-  .caja li b { color: var(--morado); font-weight: 800; }
+  .contactos { background: var(--lavanda); color: var(--vino); padding: 4rem 0; }
+  .contactos .wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; }
+  .contactos .caja { background: var(--lavanda); padding: 1.5rem; border-radius: 1rem; }
+  .contactos h2 { font-size: clamp(1.8rem, 5vw, 2.6rem); margin-bottom: 1rem; }
+  .contactos ul { list-style: none; }
+  .contactos li { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px solid rgba(105,4,55,.25); padding: .5rem 0; }
+  .contactos li b { font-weight: 800; }
 
-  footer {
-    background: var(--gris);
-    color: var(--blanco);
-    padding: 2rem 0;
-    text-align: center;
-  }
-  footer p { font-family: 'DM Serif Display', serif; font-size: 1.5rem; }
-  footer span { color: var(--amarillo); }
-
-  @media (max-width: 560px) {
-    .derecho { grid-template-columns: 3rem 1fr; gap: .75rem; padding: 1.25rem 0; }
-    .num { font-size: 2.4rem; }
-    .intro { padding: 1.5rem; }
-  }
+  @media (max-width: 560px) { li { grid-template-columns: 3rem 1fr; } .num { width: 3rem; height: 3rem; font-size: 2rem; } }
 </style>
 </head>
 <body>
 
-<header>
+<header class="afiche lineas" data-fondo="#690437" data-linea="rgba(255,255,255,.7)">
+  <canvas aria-hidden="true"></canvas>
   <div class="wrap">
-    <span class="sobretitulo">DALE LA VUELTA</span>
-    <h1><span>El Derecho a</span><span class="continuar">CONTINUAR</span></h1>
-    <p class="lema">Hay derechos, apoyo y una vida que merece seguir.</p>
-    <div class="intro">
-      <p><strong>Una guía de orientación.</strong> Información y orientación para mujeres sobrevivientes de violencia femicida.</p>
-      <p>La Ley 21.565 establece medidas de protección y reparación para las víctimas de femicidio y sus familias. <strong>Tus derechos son importantes.</strong></p>
+    <div class="titulo">
+      <p class="pre">DALE LA VUELTA</p>
+      <h1><span>El Derecho a</span><span>Continuar</span></h1>
+      <p>Hay derechos, apoyo y una vida que merece seguir.</p>
     </div>
   </div>
 </header>
 
-<main class="wrap">
+<section class="banda intro">
+  <div class="wrap">
+    <p>Una guía de orientación para mujeres sobrevivientes de violencia femicida.</p>
+    <p>La Ley 21.565 establece medidas de protección y reparación para las víctimas de femicidio y sus familias. Tus derechos son importantes.</p>
+  </div>
+</section>
 
-  <section aria-labelledby="sec-a">
-    <div class="seccion-titulo">
-      <span class="letra" aria-hidden="true">A</span>
-      <div>
-        <h2 id="sec-a">Reparación del Estado</h2>
-        <p class="ref">Ley 21.565, 2023</p>
-      </div>
-    </div>
+<section class="banda lav" aria-labelledby="a">
+  <div class="wrap">
+    <h2 id="a">Reparación del Estado</h2>
+    <p class="ref">Ley 21.565, 2023</p>
     <ol>
-      <li class="derecho"><span class="num">1</span><div><h3>Atención y reparación integral</h3><p>La ley busca crear y fortalecer las acciones del Estado para la atención y reparación integral de las víctimas.</p></div></li>
-      <li class="derecho"><span class="num">2</span><div><h3>Ser reconocida oficialmente como víctima</h3><p>El SernamEG calificó la condición de víctima. Esa calificación abre el acceso a los beneficios.</p></div></li>
-      <li class="derecho"><span class="num">3</span><div><h3>Acceso preferente a la protección social</h3><p>Las víctimas directas e indirectas tienen acceso preferente a las prestaciones sociales de las que sean usuarias.</p></div></li>
-      <li class="derecho"><span class="num">4</span><div><h3>Pensión de reparación para hijos e hijas (víctimas indirectas)</h3><p>Es una pensión mensual de <mark>$160.000</mark> para menores de 18 años, que se paga hasta que cumplan esa edad.</p></div></li>
-      <li class="derecho"><span class="num">5</span><div><h3>Compatibilidad de la pensión</h3><p>Es compatible con cualquier otra pensión o beneficio de seguridad social.</p></div></li>
-      <li class="derecho"><span class="num">6</span><div><h3>Trámite gratuito y abierto todo el año</h3><p>La solicitud se ingresa en el sitio web del SernamEG, sin costo.</p></div></li>
-      <li class="derecho"><span class="num">7</span><div><h3>Reconocimiento de la responsabilidad del Estado</h3><p>La ley busca resarcir el daño de las víctimas y sus familias, reconociendo la responsabilidad del Estado frente a la violencia que viven las mujeres.</p></div></li>
+      <li><span class="num">1</span><div><h3>Atención y reparación integral</h3><p>La ley busca crear y fortalecer las acciones del Estado para la atención y reparación integral de las víctimas.</p></div></li>
+      <li><span class="num">2</span><div><h3>Ser reconocida oficialmente como víctima</h3><p>El SernamEG calificó la condición de víctima. Esa calificación abre el acceso a los beneficios.</p></div></li>
+      <li><span class="num">3</span><div><h3>Acceso preferente a la protección social</h3><p>Las víctimas directas e indirectas tienen acceso preferente a las prestaciones sociales de las que sean usuarias.</p></div></li>
+      <li><span class="num">4</span><div><h3>Pensión de reparación para hijos e hijas (víctimas indirectas)</h3><p>Es una pensión mensual de <mark>$160.000</mark> para menores de 18 años, que se paga hasta que cumplan esa edad.</p></div></li>
+      <li><span class="num">5</span><div><h3>Compatibilidad de la pensión</h3><p>Es compatible con cualquier otra pensión o beneficio de seguridad social.</p></div></li>
+      <li><span class="num">6</span><div><h3>Trámite gratuito y abierto todo el año</h3><p>La solicitud se ingresa en el sitio web del SernamEG, sin costo.</p></div></li>
+      <li><span class="num">7</span><div><h3>Reconocimiento de la responsabilidad del Estado</h3><p>La ley busca resarcir el daño de las víctimas y sus familias, reconociendo la responsabilidad del Estado frente a la violencia que viven las mujeres.</p></div></li>
     </ol>
-  </section>
+  </div>
+</section>
 
-  <section aria-labelledby="sec-b">
-    <div class="seccion-titulo">
-      <span class="letra" aria-hidden="true">B</span>
-      <div>
-        <h2 id="sec-b">Derechos laborales</h2>
-        <p class="ref">Sobrevivientes de femicidio frustrado</p>
-      </div>
-    </div>
+<section class="banda cor" aria-labelledby="b">
+  <div class="wrap">
+    <h2 id="b">Derechos laborales</h2>
+    <p class="ref">Sobrevivientes de femicidio frustrado</p>
     <ol>
-      <li class="derecho"><span class="num">8</span><div><h3>Fuero laboral</h3><p>Desde el hecho y hasta un año después.</p></div></li>
-      <li class="derecho"><span class="num">9</span><div><h3>Adecuación temporal de funciones mientras dure el fuero</h3><p>Sirve para permitir la reparación y protección de la víctima.</p></div></li>
-      <li class="derecho"><span class="num">10</span><div><h3>Permiso para asistir a diligencias</h3><p>La comparecencia en investigaciones o procedimientos judiciales, cuando es requerida, queda justificada. La ley da además un permiso especial a otras víctimas para justificar su ausencia laboral.</p></div></li>
+      <li><span class="num">8</span><div><h3>Fuero laboral</h3><p>Desde el hecho y hasta un año después.</p></div></li>
+      <li><span class="num">9</span><div><h3>Adecuación temporal de funciones mientras dure el fuero</h3><p>Sirve para permitir la reparación y protección de la víctima.</p></div></li>
+      <li><span class="num">10</span><div><h3>Permiso para asistir a diligencias</h3><p>La comparecencia en investigaciones o procedimientos judiciales, cuando es requerida, queda justificada. La ley da además un permiso especial a otras víctimas para justificar su ausencia laboral.</p></div></li>
     </ol>
-  </section>
+  </div>
+</section>
 
-  <section aria-labelledby="sec-c">
-    <div class="seccion-titulo">
-      <span class="letra" aria-hidden="true">C</span>
-      <div>
-        <h2 id="sec-c">Derechos en el proceso penal</h2>
-        <p class="ref">Art. 109 y 109 bis CPP y Ley Antonia</p>
-      </div>
-    </div>
+<section class="banda cor" aria-labelledby="c" style="padding-top:0">
+  <div class="wrap">
+    <h2 id="c">Derechos en el proceso penal</h2>
+    <p class="ref">Art. 109 y 109 bis CPP y Ley Antonia</p>
     <ol>
-      <li class="derecho"><span class="num">11</span><div><h3>Asistencia y representación judicial</h3><p>Se agrega a los derechos generales de toda víctima en delitos de violencia contra las mujeres.</p></div></li>
-      <li class="derecho"><span class="num">12</span><div><h3>Información clara, oportuna y completa de la causa</h3><p>También sobre la libertad condicional y los permisos de salida del condenado.</p></div></li>
-      <li class="derecho"><span class="num">13</span><div><h3>Protección de datos personales, intimidad y honra, propios y de hijos e hijas</h3><p>Rige desde la denuncia.</p></div></li>
-      <li class="derecho"><span class="num">14</span><div><h3>Atención por personal capacitado de Carabineros, PDI y Ministerio Público</h3><p>Para evitar la revictimización.</p></div></li>
-      <li class="derecho"><span class="num">15</span><div><h3>Medidas de protección y cautelares</h3><p>Por ejemplo, prohibición de acercamiento.</p></div></li>
-      <li class="derecho"><span class="num">16</span><div><h3>Perseguir responsabilidad civil</h3><p>Es decir, demandar una indemnización por el daño.</p></div></li>
+      <li><span class="num">11</span><div><h3>Asistencia y representación judicial</h3><p>Se agrega a los derechos generales de toda víctima en delitos de violencia contra las mujeres.</p></div></li>
+      <li><span class="num">12</span><div><h3>Información clara, oportuna y completa de la causa</h3><p>También sobre la libertad condicional y los permisos de salida del condenado.</p></div></li>
+      <li><span class="num">13</span><div><h3>Protección de datos personales, intimidad y honra, propios y de hijos e hijas</h3><p>Rige desde la denuncia.</p></div></li>
+      <li><span class="num">14</span><div><h3>Atención por personal capacitado de Carabineros, PDI y Ministerio Público</h3><p>Para evitar la revictimización.</p></div></li>
+      <li><span class="num">15</span><div><h3>Medidas de protección y cautelares</h3><p>Por ejemplo, prohibición de acercamiento.</p></div></li>
+      <li><span class="num">16</span><div><h3>Perseguir responsabilidad civil</h3><p>Es decir, demandar una indemnización por el daño.</p></div></li>
     </ol>
-  </section>
+  </div>
+</section>
 
-  <section aria-labelledby="sec-d">
-    <div class="seccion-titulo">
-      <span class="letra" aria-hidden="true">D</span>
-      <div>
-        <h2 id="sec-d">Apoyo psicosocial y protección de la familia</h2>
-      </div>
-    </div>
+<section class="banda vin" aria-labelledby="d">
+  <div class="wrap">
+    <h2 id="d">Apoyo psicosocial y protección de la familia</h2>
     <ol>
-      <li class="derecho"><span class="num">17</span><div><h3>Atención psicosocial especializada</h3><p>El Programa de Apoyo a Víctimas atiende a víctimas directas de femicidios frustrados y a víctimas indirectas de femicidios consumados.</p></div></li>
-      <li class="derecho"><span class="num">18</span><div><h3>Protección de hijos e hijas frente al agresor</h3><p>La ley establece la suspensión y privación de derechos y responsabilidades parentales para quienes cometan este delito.</p></div></li>
+      <li><span class="num">17</span><div><h3>Atención psicosocial especializada</h3><p>El Programa de Apoyo a Víctimas atiende a víctimas directas de femicidios frustrados y a víctimas indirectas de femicidios consumados.</p></div></li>
+      <li><span class="num">18</span><div><h3>Protección de hijos e hijas frente al agresor</h3><p>La ley establece la suspensión y privación de derechos y responsabilidades parentales para quienes cometan este delito.</p></div></li>
     </ol>
-  </section>
+  </div>
+</section>
 
-  <div class="contactos">
-    <div class="caja amarilla">
-      <h2>Denunciar</h2>
+<footer class="contactos lineas" data-fondo="#D6C4E0" data-linea="rgba(105,4,55,.55)">
+  <canvas aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="caja">
+      <h2>¿Dónde denunciar?</h2>
       <ul>
-        <li><b>Carabineros</b> 133</li>
-        <li><b>PDI</b> 134</li>
-        <li><b>Fono Familia</b> 149</li>
-        <li><b>La Fiscalía</b> 600 333 00 00</li>
+        <li><b>Carabineros</b><span>133</span></li>
+        <li><b>PDI</b><span>134</span></li>
+        <li><b>Fono Familia</b><span>149</span></li>
+        <li><b>La Fiscalía</b><span>600 333 00 00</span></li>
       </ul>
     </div>
-    <div class="caja lavanda">
+    <div class="caja">
       <h2>Orientación y acompañamiento</h2>
       <ul>
-        <li><b>Fono 1455</b> SernamEG</li>
-        <li><b>Centros de la Mujer</b> SernamEG</li>
+        <li><b>Fono 1455</b><span>SernamEG</span></li>
+        <li><b>Centros de la Mujer</b><span>SernamEG</span></li>
       </ul>
     </div>
   </div>
-
-</main>
-
-<footer>
-  <p>Dale la vuelta. <span>El Derecho a Continuar.</span></p>
 </footer>
 
+<script>
+/* Líneas curvas animadas: cada nodo de la grilla une a sus vecinos con
+   un haz de curvas; la amplitud "respira" con un desfase por posición. */
+(function () {
+  var reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var lienzos = [].slice.call(document.querySelectorAll('.lineas'));
+
+  lienzos.forEach(function (caja) {
+    var c = caja.querySelector('canvas');
+    var ctx = c.getContext('2d');
+    var fondo = caja.dataset.fondo, linea = caja.dataset.linea;
+    var w, h, visible = true;
+
+    function medir() {
+      var d = window.devicePixelRatio || 1;
+      w = caja.clientWidth; h = caja.clientHeight;
+      c.width = w * d; c.height = h * d;
+      ctx.setTransform(d, 0, 0, d, 0, 0);
+    }
+
+    function dibujar(t) {
+      var S = Math.max(180, Math.min(w / 4, 280)), H = S * 0.9;
+      var n = 15, cols = Math.ceil(w / S) + 2, filas = Math.ceil(h / H) + 2;
+      ctx.fillStyle = fondo; ctx.fillRect(0, 0, w, h);
+      ctx.strokeStyle = linea; ctx.lineWidth = 1;
+      var dx = (t * 6) % S;               // deriva lenta hacia la izquierda
+      ctx.beginPath();
+      for (var j = -1; j < filas; j++) {
+        for (var i = -1; i < cols; i++) {
+          var x = i * S - dx + S * 0.5, y = j * H + H * 0.5;
+          var a = 0.8 + 0.2 * Math.sin(t * 0.9 + i * 0.7 + j * 0.9);
+          for (var k = -n; k <= n; k++) {
+            var o = (k / n) * H * 0.42 * a * 1.34;
+            // lóbulo horizontal (redondo, pinzado en los nodos)
+            ctx.moveTo(x, y);
+            ctx.bezierCurveTo(x + S * 0.03, y + o, x + S * 0.97, y + o, x + S, y);
+            // lóbulo vertical
+            var o2 = (k / n) * S * 0.36 * a * 1.34;
+            ctx.moveTo(x, y);
+            ctx.bezierCurveTo(x + o2, y + H * 0.03, x + o2, y + H * 0.97, x, y + H);
+          }
+        }
+      }
+      ctx.stroke();
+    }
+
+    medir();
+    window.addEventListener('resize', function () { medir(); dibujar(performance.now() / 1000); });
+    new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(caja);
+
+    if (reducido) { dibujar(0); return; }
+    (function bucle(ms) { if (visible) dibujar(ms / 1000); requestAnimationFrame(bucle); })(0);
+  });
+})();
+</script>
 </body>
 </html>
