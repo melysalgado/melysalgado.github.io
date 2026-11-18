@@ -179,7 +179,7 @@
 
     function dibujar(t) {
       var S = Math.max(180, Math.min(w / 4, 280)), H = S * 0.9;
-      var n = 15, cols = Math.ceil(w / S) + 2, filas = Math.ceil(h / H) + 2;
+      var n = 11, cols = Math.ceil(w / S) + 2, filas = Math.ceil(h / H) + 2;
       ctx.fillStyle = fondo; ctx.fillRect(0, 0, w, h);
       ctx.strokeStyle = linea; ctx.lineWidth = 1;
       var dx = (t * 6) % S;               // deriva lenta hacia la izquierda
@@ -189,14 +189,14 @@
           var x = i * S - dx + S * 0.5, y = j * H + H * 0.5;
           var a = 0.8 + 0.2 * Math.sin(t * 0.9 + i * 0.7 + j * 0.9);
           for (var k = -n; k <= n; k++) {
-            var o = (k / n) * H * 0.42 * a * 1.34;
-            // lóbulo horizontal (redondo, pinzado en los nodos)
+            var o = (k / n) * H * 0.62 * a;
+            // lóbulo horizontal
             ctx.moveTo(x, y);
-            ctx.bezierCurveTo(x + S * 0.03, y + o, x + S * 0.97, y + o, x + S, y);
+            ctx.bezierCurveTo(x + S * 0.28, y + o * 1.3, x + S * 0.72, y + o * 1.3, x + S, y);
             // lóbulo vertical
-            var o2 = (k / n) * S * 0.36 * a * 1.34;
+            var o2 = (k / n) * S * 0.36 * a;
             ctx.moveTo(x, y);
-            ctx.bezierCurveTo(x + o2, y + H * 0.03, x + o2, y + H * 0.97, x, y + H);
+            ctx.bezierCurveTo(x + o2 * 1.3, y + H * 0.28, x + o2 * 1.3, y + H * 0.72, x, y + H);
           }
         }
       }
